@@ -15,7 +15,7 @@ namespace csharpPrac1grade2
             Console.InputEncoding = Encoding.UTF8;
 
             Console.WriteLine("=== Аналізатор Тексту ===");
-            Console.WriteLine("Введіть повний шлях до вашого .txt файлу (або перетягніть файл у вікно консолі):");
+            Console.WriteLine("Введіт повний шлях до вашого .txt файлу (або перетягніть файл у вікно консолі):");
 
             // Читання шляху та видалення зайвих лапок (якщо файл перетягнули мишкою)
             string filePath = Console.ReadLine();
@@ -25,13 +25,13 @@ namespace csharpPrac1grade2
                 Console.WriteLine("Помилка: Файл не знайдено. Перевірте правильність шляху.");
                 return;
             }
-
+            
             try
             {
-                // 1. Зчитування всього тексту з файлу
+                // 1. Зчитування тексту з файлу
                 string text = File.ReadAllText(filePath).ToLower();
 
-                // 2. Витягування лише слів (ігноруємо пробіли, крапки, коми тощо)
+                // 2.Витягування слів (ігноруємо пробіли, крапки, коми тощо)
                 // \b - межа слова, \w+ - одне або більше буквено-цифрових символів
                 var words = Regex.Matches(text, @"\b\w+\b")
                                  .Cast<Match>()
@@ -44,7 +44,7 @@ namespace csharpPrac1grade2
                     return;
                 }
 
-                // 3. Аналіз слів за допомогою LINQ
+                // 3. Аналіз слів
                 var wordStatistics = words
                     .GroupBy(word => word)
                     .Select(group => new { Word = group.Key, Count = group.Count() })
